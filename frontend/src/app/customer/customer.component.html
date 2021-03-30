@@ -1,0 +1,62 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center" class="container page">
+<div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <div class="input-group">
+           <label class="form-control" style="border: none;">Name: </label> 
+           <input #name name="Name" id="Name" placeholder="Name" class="form-control"  >
+           
+          </div>
+    </div>
+</div>
+  
+    <div class="col-sm-4">
+      <div class="form-group">
+        <div class="input-group">
+           
+           <label class="form-control"  style="border: none;">Country: </label>
+           <select name="county" id="country" class="custom-select" #country>
+            <option disabled selected value="">Choose country</option>
+            <option value="237">Cameroon </option>
+            <option value="251">Ethiopia  </option>
+            <option value="212">Morocco  </option>
+            <option value="258">Mozambique  </option>
+            <option value="256">Uganda  </option>
+   
+          </select>  
+                </div>
+    </div>
+</div>
+
+    <div class="col-sm-4">
+      <button class="btn btn-success" name="Filter" (click)="filter(name.value,country.value)">Filter</button>
+
+    </div>
+</div>
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Country</th>
+      <th scope="col">Valid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customerList | paginate: { itemsPerPage: page_size, currentPage: page_num,totalItems:total }">
+      
+      <td>{{customer.name}}</td>
+      <td>{{customer.phone}}</td>
+      <td>{{customer.country}}</td>
+      <td>
+        <i *ngIf="customer?.valid == true" class="fa fa-check">True</i>
+        <i *ngIf="customer?.valid == false" class="fa fa-times">False</i>
+      </td>
+      
+    </tr>
+   
+  </tbody>
+</table>
+<pagination-controls (pageChange)="paging($event)"></pagination-controls>
+</div>
