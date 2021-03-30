@@ -1,4 +1,4 @@
-prerequisites intallations:
+prerequisite intallations:
 * java 11 or higher
 * maven
 * docker engine
